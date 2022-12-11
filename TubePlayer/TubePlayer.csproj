@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<!--<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>-->
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
@@ -12,30 +13,43 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TubePlayer</ApplicationTitle>
+		<ApplicationTitle>Tube Player</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.tubeplayer</ApplicationId>
+		<ApplicationId>com.creativillage.tubeplayer</ApplicationId>
 		<ApplicationIdGuid>98977A2E-205E-44AA-AA16-5E6F4B59E197</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<!--<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>-->
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#262626" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<!-- Dark Gray color -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#262626" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -45,4 +59,71 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="MonkeyCache.FileStore" />
+	  <None Remove="Helpers\" />
+	  <None Remove="Services\" />
+	  <None Remove="IServices\" />
+	  <None Remove="Models\" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Views\" />
+	  <None Remove="IViews\" />
+	  <None Remove="ViewControls\" />
+	  <None Remove="ViewModels\Base\" />
+	  <None Remove="Views\Base\" />
+	  <None Remove="Resources\Fonts\FiraSans-Light.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-Medium.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-Regular.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-SemiBold.ttf" />
+	  <None Remove="Resources\Images\nointernet.png" />
+	  <None Remove="Resources\Images\share.png" />
+	  <None Remove="Resources\Images\play.png" />
+	  <None Remove="Resources\Images\like.png" />
+	  <None Remove="Resources\Images\download.png" />
+	  <None Remove="Resources\Images\back.png" />
+	  <None Remove="Resources\Images\speech.png" />
+	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\search.png" />
+	  <None Remove="Resources\Images\hambuger.png" />
+	  <None Remove="Resources\Images\close.png" />
+	  <None Remove="Resources\Images\backarrow.png" />
+	  <None Remove="Resources\Images\error.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	  <PackageReference Include="MonkeyCache.FileStore" Version="1.6.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Helpers\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="IServices\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="IViews\" />
+	  <Folder Include="ViewControls\" />
+	  <Folder Include="ViewModels\Base\" />
+	  <Folder Include="Views\Base\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\nointernet.png" />
+	  <BundleResource Include="Resources\Images\share.png" />
+	  <BundleResource Include="Resources\Images\play.png" />
+	  <BundleResource Include="Resources\Images\like.png" />
+	  <BundleResource Include="Resources\Images\download.png" />
+	  <BundleResource Include="Resources\Images\back.png" />
+	  <BundleResource Include="Resources\Images\speech.png" />
+	  <BundleResource Include="Resources\Images\settings.png" />
+	  <BundleResource Include="Resources\Images\search.png" />
+	  <BundleResource Include="Resources\Images\hambuger.png" />
+	  <BundleResource Include="Resources\Images\close.png" />
+	  <BundleResource Include="Resources\Images\backarrow.png" />
+	  <BundleResource Include="Resources\Images\error.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Views\StartPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
 </Project>
